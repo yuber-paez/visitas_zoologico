@@ -20,6 +20,33 @@ if (isset($_POST['btnclose'])) {
     header('location: ../../index.html');
 }
 ?>
+
+<?php 
+if (isset($_POST['registrar'])) {
+
+  $name = $_POST['nombre'];
+  $documento = $_POST['documento'];
+  $tel = $_POST['telefono'];
+  $fecha_entrada = $_POST['fecha_entrada'];
+  $fecha_salida = $_POST['fecha_salida'];
+  $tip_entrada = $_POST['tip_entrada'];
+  $medio_pago = $_POST['med_pago'];
+
+  $insertData = $con->prepare(query:"INSERT INTO visitas (nombre,documento,tel,fecha_entrada,fecha_salida,tip_entrada,id_med_pago)
+  VALUES ('$name', '$documento', '$tel', '$fecha_entrada', '$fecha_salida', '$tip_entrada', '$medio_pago' )");
+  $insertData->execute();
+  if ($insertData->execute()){
+    echo "<script>alert('Datos registrados correctamente');</script>";
+  }
+
+  else {
+    echo "<script>alert('No fue posible registrar datos');</script>";
+  }
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -95,14 +122,7 @@ if (isset($_POST['btnclose'])) {
                 <i class="bi bi-people-fill"></i>
                 <span>Nueva visita</span>
             </a>
-            <a href="empleados.php" class="nav-item">
-                <i class="bi bi-person-badge-fill"></i>
-                <span>Empleados</span>
-            </a>
-            <a href="reportes.php" class="nav-item">
-                <i class="bi bi-graph-up"></i>
-                <span>Reportes</span>
-            </a>
+            
         </div>
 
         <!-- DERECHA -->
@@ -129,7 +149,7 @@ if (isset($_POST['btnclose'])) {
       <div class="col-md-7">
         <div class="card shadow-sm p-4">
           <h5 class="mb-3 text-success">Registro Individual</h5>
-          <form action="procesar_visita.php" method="POST">
+          <form method="POST">
             <!-- Nombre -->
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre Completo</label>
@@ -157,43 +177,47 @@ if (isset($_POST['btnclose'])) {
             <!-- Fecha Salida -->
             <div class="mb-3">
               <label for="fecha_salida" class="form-label">Fecha Salida</label>
-              <select class="form-select" id="fecha_salida" name="fecha_salida" required>
-                <option value="">Seleccione...</option>
-                <option value="2h">2 Horas</option>
-                <option value="4h">4 Horas</option>
-                <option value="6h">6 Horas</option>
-                <option value="dia">Todo el día</option>
-              </select>
+              <input type="datetime-local" class="form-control"  name="fecha_salida" required>
             </div>
 
             <!-- Tipo Entrada -->
             <div class="mb-3">
               <label for="tipo_entrada" class="form-label">Tipo de Entrada</label>
-              <select class="form-select" id="tipo_entrada" name="tipo_entrada" required>
+              <select class="form-select" id="tip_entrada" name="tip_entrada" required>
                 <option value="">Seleccione...</option>
-                <option value="adulto">Adulto</option>
-                <option value="niño">Niño</option>
-                <option value="estudiante">Estudiante</option>
-                <option value="jubilado">Jubilado</option>
+                <?php
+                        $control = $con->prepare(query: "SELECT * FROM tip_entrada");
+                        $control->execute();
+
+                        while ($fila = $control->fetch(mode: PDO::FETCH_ASSOC)) {
+                            echo "<option value=" . $fila['id_tip_entrada'] . ">" . $fila['entrada'] . "</option>";
+                        }
+
+                        ?>
               </select>
             </div>
 
             <!-- Medio de Pago -->
             <div class="mb-4">
               <label for="medio_pago" class="form-label">Medio de Pago</label>
-              <select class="form-select" id="medio_pago" name="medio_pago" required>
+              <select class="form-select" id="med_pago" name="med_pago" required>
                 <option value="">Seleccione...</option>
-                <option value="efectivo">Efectivo</option>
-                <option value="tarjeta">Tarjeta</option>
-                <option value="transferencia">Transferencia</option>
-                <option value="otro">Otro</option>
+                <?php
+                        $control = $con->prepare(query: "SELECT * FROM medio_pago");
+                        $control->execute();
+
+                        while ($fila = $control->fetch(mode: PDO::FETCH_ASSOC)) {
+                            echo "<option value=" . $fila['id_medio_pago'] . ">" . $fila['pago'] . "</option>";
+                        }
+
+                        ?>
               </select>
             </div>
 
             <!-- Botones -->
             <div class="d-flex justify-content-between">
               <button type="reset" class="btn btn-secondary">Cancelar</button>
-              <button type="submit" class="btn btn-success">Guardar Visita</button>
+              <button type="submit" class="btn btn-success" name="registrar">Guardar Visita</button>
             </div>
           </form>
         </div>

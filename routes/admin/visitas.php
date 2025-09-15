@@ -20,6 +20,10 @@ if (isset($_POST['btnclose'])) {
     header('location: ../../index.html');
 }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -95,14 +99,7 @@ if (isset($_POST['btnclose'])) {
                 <i class="bi bi-people-fill"></i>
                 <span>Nueva visita</span>
             </a>
-            <a href="empleados.php" class="nav-item">
-                <i class="bi bi-person-badge-fill"></i>
-                <span>Empleados</span>
-            </a>
-            <a href="reportes.php" class="nav-item">
-                <i class="bi bi-graph-up"></i>
-                <span>Reportes</span>
-            </a>
+    
         </div>
 
         <!-- DERECHA -->
@@ -162,12 +159,15 @@ if (isset($_POST['btnclose'])) {
                         <td><?php echo $resul['pago'] ?></td>
                         <td>
                             <div class="d-flex gap-2">
-                                <button type="button" class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-square"></i> Editar
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Borrar
-                                </button>
+                                <a href=""
+                                onclick="window.open
+                            ('editvisit.php?id=<?php echo $resul['id_visi'] ?>','', 'widht= 700, height= 500, toolbar=NO');
+                            void(null);">
+                                <button class="btn-action btn-edit"></i>Edit</button>
+                            </a>
+
+
+                            <?php echo '<a class="btn btn-danger btn-sm" href="users.php?idelete=' . $resul['id_visi'] . ' ">Eliminar</a>' ?>
                             </div>
 
                         </td>

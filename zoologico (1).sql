@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2025 a las 09:37:19
+-- Tiempo de generación: 15-09-2025 a las 22:02:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -126,8 +126,12 @@ CREATE TABLE `visitas` (
 --
 
 INSERT INTO `visitas` (`id_visi`, `nombre`, `documento`, `tel`, `fecha_entrada`, `fecha_salida`, `tip_entrada`, `id_med_pago`) VALUES
-(1, 'Yuber Paez', 1070730214, '305 847 9261', '2025-09-15 06:53:56', '2025-09-30 01:53:35', 1, 1),
-(2, 'Yuber Paez', 1070730214, '305 847 9261', '2025-09-15 06:54:05', '2025-09-30 01:53:35', 1, 1);
+(1, 'Yuber PaezZZZZZ', 1070730214, '305 847 9261', '2025-09-15 06:53:56', '2025-09-30 01:53:35', 1, 1),
+(2, 'Yuber Paez', 1070730214, '305 847 9261', '2025-09-15 06:54:05', '2025-09-30 01:53:35', 1, 1),
+(3, 'Yuber', 1070730214, '3212287458', '2025-09-15 19:05:21', '2025-09-15 13:55:00', 2, 2),
+(4, 'Yuber', 1070730214, '43214321', '2025-09-15 18:55:00', '2025-09-15 13:55:00', 2, 2),
+(8, 'Yuber santiago', 1070730214, '3212287458', '2025-09-15 06:53:56', '2025-09-15 01:53:56', 1, 2),
+(9, 'Yuber santiago', 1070730214, '3212287458', '2025-09-15 06:53:56', '2025-09-15 01:53:56', 1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -198,7 +202,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id_visi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_visi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

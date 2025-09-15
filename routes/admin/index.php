@@ -95,14 +95,7 @@ if (isset($_POST['btnclose'])) {
                 <i class="bi bi-people-fill"></i>
                 <span>Nueva visita</span>
             </a>
-            <a href="empleados.php" class="nav-item">
-                <i class="bi bi-person-badge-fill"></i>
-                <span>Empleados</span>
-            </a>
-            <a href="reportes.php" class="nav-item">
-                <i class="bi bi-graph-up"></i>
-                <span>Reportes</span>
-            </a>
+            
         </div>
 
         <!-- DERECHA -->
